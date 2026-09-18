@@ -1,0 +1,457 @@
+{
+  "name": "China Supplier RFQ Scoring & Qualification - Portfolio Template",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "efc79f57-4f26-4424-9230-2f7d95051b2a",
+              "name": "status",
+              "value": "Qualified Supplier",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        672,
+        -64
+      ],
+      "id": "906f693e-6f8d-4e56-b8b6-4828c66b75b6",
+      "name": "Qualified Supplier"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "882f2e76-bab7-49e9-b25a-70bef71aee5b",
+              "name": "status",
+              "value": "Not Qualified",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        672,
+        96
+      ],
+      "id": "25b953ee-12c9-44f5-b843-6b5ca4820f59",
+      "name": "Not Qualified"
+    },
+    {
+      "parameters": {
+        "formTitle": "Supplier RFQ Submission",
+        "formDescription": "Submit supplier quotation details for qualification.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Supplier Name",
+              "fieldName": "supplier",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Product",
+              "fieldName": "product",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Price",
+              "fieldType": "number",
+              "fieldName": "price",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "MOQ",
+              "fieldType": "number",
+              "fieldName": "moq",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Lead Time Days",
+              "fieldType": "number",
+              "fieldName": "lead_time_days",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        32,
+        0
+      ],
+      "id": "c7d6e41c-71e1-4de3-98c7-8b72041bcaf3",
+      "name": "On form submission"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "REPLACE_WITH_YOUR_DATA_TABLE_ID",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "supplier": "={{ $json.supplier }}",
+            "product": "={{ $json.product }}",
+            "price": "={{ $json.price }}",
+            "moq": "={{ $json.moq }}",
+            "lead_time_days": "={{ $json.lead_time_days }}",
+            "status": "={{ $json.status }}",
+            "score": "={{ $json.score }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "supplier",
+              "displayName": "supplier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "product",
+              "displayName": "product",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "price",
+              "displayName": "price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "moq",
+              "displayName": "moq",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "lead_time_days",
+              "displayName": "lead_time_days",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "score",
+              "displayName": "score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        896,
+        -64
+      ],
+      "id": "23fc8298-88da-4e03-a23b-c09b4efb99ed",
+      "name": "Save Qualified Supplier"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "REPLACE_WITH_YOUR_DATA_TABLE_ID",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "supplier": "={{ $json.supplier }}",
+            "product": "={{ $json.product }}",
+            "price": "={{ $json.price }}",
+            "moq": "={{ $json.moq }}",
+            "lead_time_days": "={{ $json.lead_time_days }}",
+            "status": "={{ $json.status }}",
+            "score": "={{ $json.score }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "supplier",
+              "displayName": "supplier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "product",
+              "displayName": "product",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "price",
+              "displayName": "price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "moq",
+              "displayName": "moq",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "lead_time_days",
+              "displayName": "lead_time_days",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "score",
+              "displayName": "score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        896,
+        96
+      ],
+      "id": "f5dbc2e8-86af-4ca3-840a-b9eac09d2ab1",
+      "name": "Save Not Qualified Supplier"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "941e1fb4-b7eb-43e2-8141-44b56458071d",
+              "leftValue": "={{ $json.moq }}",
+              "rightValue": 500,
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            },
+            {
+              "id": "1cd12a31-792f-43df-b103-5e25944960d1",
+              "leftValue": "={{ $json.price }} ",
+              "rightValue": 35,
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            },
+            {
+              "id": "d0ff1f85-6159-479f-a473-fc64dd6e6771",
+              "leftValue": "={{ $json.lead_time_days }}",
+              "rightValue": 30,
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        448,
+        0
+      ],
+      "id": "081c475f-8a6b-41af-914f-f2d520ed2b19",
+      "name": "Supplier Qualification"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "13942105-47d7-48e2-819c-7c2354bea572",
+              "name": "score",
+              "value": "= {{ (Number($json.price) <= 30 ? 40 : Number($json.price) <= 35 ? 30 : Number($json.price) <= 40 ? 15 : 0) + (Number($json.moq) <= 300 ? 35 : Number($json.moq) <= 500 ? 25 : Number($json.moq) <= 800 ? 10 : 0) + (Number($json.lead_time_days) <= 20 ? 25 : Number($json.lead_time_days) <= 30 ? 20 : Number($json.lead_time_days) <= 45 ? 10 : 0) }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        240,
+        0
+      ],
+      "id": "f9266a49-e8d2-4aca-94fe-eb26a82c7777",
+      "name": "Calculate Supplier Score"
+    }
+  ],
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Calculate Supplier Score",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qualified Supplier": {
+      "main": [
+        [
+          {
+            "node": "Save Qualified Supplier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Not Qualified": {
+      "main": [
+        [
+          {
+            "node": "Save Not Qualified Supplier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supplier Qualification": {
+      "main": [
+        [
+          {
+            "node": "Qualified Supplier",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Not Qualified",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Supplier Score": {
+      "main": [
+        [
+          {
+            "node": "Supplier Qualification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "nodeGroups": [],
+  "tags": []
+}
