@@ -1,7 +1,7 @@
 # China Supplier RFQ Scoring & Qualification Automation
 
 An n8n workflow that automatically scores and qualifies suppliers based on Price, MOQ, and Lead Time.
-
+![Workflow Overview](workflow-overview.png)
 ## Business Problem
 
 Supplier quotations are often compared manually, which is time-consuming and inconsistent.
